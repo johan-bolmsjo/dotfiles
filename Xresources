@@ -1,0 +1,8 @@
+! ~/.Xresources
+Xft.dpi: 96
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
+*VT100.Translations:	#override \
+	<Key>Delete: string(0x04) \n\
+	<Key>BackSpace: string(0x7F)
+XTerm*ttyModes: erase ^?

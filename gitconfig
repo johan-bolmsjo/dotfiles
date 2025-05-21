@@ -1,0 +1,100 @@
+# ~/.gitconfig
+
+[user]
+	name = John Doe
+	email = john.doe@null.dev
+
+[diff]
+	tool = kdiff3
+
+[difftool]
+	prompt = no
+
+[merge]
+	tool = kdiff3
+
+[mergetool]
+	prompt = no
+
+[alias]
+	# Log one line
+	log-oneline = log --graph --oneline --decorate
+
+	# Log (one line) compressed
+	log-compressed = log --graph --oneline --decorate --simplify-by-decoration
+
+	# Log graphical
+	log-graph = log --graph --abbrev-commit --decorate --date=relative
+
+	# Log (graphical) with diffstat
+	log-stat = log --graph --abbrev-commit --decorate --date=relative --stat
+
+	# Log with patches
+	log-patch = log --abbrev-commit --decorate --date=relative --patch --cc -w
+
+	# Log branch local changes.
+	log-local = log --abbrev-commit --decorate --date=relative --first-parent
+
+	# Log all changes except merges
+	log-no-merges = log --abbrev-commit --decorate --date=relative --no-merges
+
+	# Log added files.
+	log-added-files = log --diff-filter=A --summary --
+
+	# Log deleted files.
+	log-deleted-files = log --diff-filter=D --summary --
+
+	# List files in change set.
+	tree-files = diff-tree --no-commit-id --name-only -r
+
+	# Find patches containing the specified pattern.
+	find-string = log --diff-filter=M --patch -S
+
+	# List change sets containing pattern.
+	whereis = log --source --all -S
+
+	# Terse status command
+	st = "status -sb"
+
+	# List files based on state
+	ls = "!git status -suno"
+	ls-added = "!git status --porcelain -uno | awk 'match($1, /A/) {print $2}'"
+	ls-copied = "!git status --porcelain -uno | awk 'match($1, /C/) {print $2}'"
+	ls-deleted = "!git status --porcelain -uno | awk 'match($1, /D/) {print $2}'"
+	ls-ignored = ls-files --others --ignored --exclude-standard
+	ls-ignored-tracked = ls-files --cached --ignored --exclude-standard
+	ls-modified = "!git status --porcelain -uno | awk 'match($1, /M/) {print $2}'"
+	ls-renamed = "!git status --porcelain -uno | awk 'match($1, /R/) {print $2}'"
+	ls-staged = "!git status --porcelain -uno | grep -P '^[MA]' | awk '{print $2 }'"
+	ls-untracked = "!git status --porcelain -uall | awk '$1 == \"??\" {print $2}'"
+	ls-updated = "!git status --porcelain -uno | awk 'match($1, /U/) {print $2}'"
+
+	# Find files matching the specified pattern.
+	# Note: lists files from sub directories to the current directory only.
+	find-file = "!f() { git ls-files | egrep "$1"; }; f"
+
+	# Alternative grep output.
+	grep-verbose = grep --break --heading --line-number
+
+	# Repo root
+	root = rev-parse --show-toplevel
+
+	# HEAD revision
+	head = rev-list -n1 --abbrev-commit HEAD
+
+	# List merged branches
+	merged = branch --merged
+
+	# Update all sub-modules recursively
+	submodule-update = "!git submodule sync && git submodule update --init --recursive"
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+
+[push]
+	default = simple
+
+[core]
+	quotepath = off
