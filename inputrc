@@ -1,4 +1,21 @@
+# Include system settings
+$include /etc/inputrc
+
+# Don't be annoying
 set bell-style none
+
+# 8-bit input/output
 set meta-flag on
 set convert-meta off
+set input-meta on
 set output-meta on
+
+# PuTTY adjustments when TERM=xterm256-color:
+"\e[1~": beginning-of-line     # Home key
+"\e[4~": end-of-line           # End key
+"\e[5~": beginning-of-history  # PageUp key
+"\e[6~": end-of-history        # PageDown key
+"\e[3~": delete-char           # Delete key
+"\e[2~": quoted-insert         # Insert key
+"\eOD": backward-word          # Ctrl + Left Arrow key
+"\eOC": forward-word           # Ctrl + Right Arrow key
