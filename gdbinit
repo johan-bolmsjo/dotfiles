@@ -22,6 +22,17 @@ set history size 500
 handle SIGPIPE nostop noprint pass
 
 define hexdump
-  dump binary memory ~/.cache/gdb/dump.bin $arg0 ((const char*)($arg0))+($arg1)
+  set $size = ((size_t)$arg1)
+  set $maxsize = 0x10000
+  if $size > $maxsize
+    set $size = $maxsize
+  end
+  dump binary memory ~/.cache/gdb/dump.bin $arg0 ((const char*)($arg0))+($size)
   shell od --endian=big -A x -t x4z -v ~/.cache/gdb/dump.bin
+end
+
+document hexdump
+Display hex-dump and string representation of memory range side by side.
+
+Usage: hexdump ADDRESS BYTE-COUNT
 end
