@@ -117,7 +117,7 @@ for v in my_dirs_fetch my_dirs_prepend; do
     unset -f $v
 done
 for v in path manpath pkgconfigpath; do
-    eval "unset my_${v}_arr"
-    eval "unset my_${v}_set"
+    unset my_${v}_arr
+    unset my_${v}_set
 done
 unset v
