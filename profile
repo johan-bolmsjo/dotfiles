@@ -86,8 +86,6 @@ my_dirs_prepend path /opt/smlnj/bin
 # Go programming language.
 # - https://go.dev
 export GOPATH="$HOME/.local"
-export GOROOT="/opt/go"
-my_dirs_prepend path "$GOROOT/bin"
 
 # OCaml programming language.
 # - https://ocaml.org/
